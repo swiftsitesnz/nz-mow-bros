@@ -6,468 +6,495 @@
 <title>NZ Mow Bros — North Shore Local Lawn Experts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fafdf5; --white: #ffffff; --surface: #f0f4e8;
-    --border: #dde4cf; --text: #1a1f12; --text-mid: #3d4a2e; --text-muted: #6b7a56;
+    --bg: #ffffff; --surface: #f4f7f0; --surface-2: #e8eddf;
+    --border: #d4dbc8; --text: #1a1a1a; --text-muted: #5a6349;
     --green: #2d5a1b; --green-light: #3a7224; --green-dark: #1e3d12;
     --accent: #e8ff47; --accent-dark: #c5d42e;
-    --dark: #0f1a08; --radius: 8px;
+    --dark: #0f1a08; --dark-surface: #1a2810; --dark-border: #2a3a1e; --dark-text: #f0f4e8; --dark-text-muted: #8a9678;
     --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --font-sans: 'DM Sans', -apple-system, sans-serif;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x:hidden; }
-  img { display:block; max-width:100%; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green); text-decoration:none; }
 
-  /* ─── TOPBAR ─── */
-  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(20px,4vw,48px); transition:background 0.3s, box-shadow 0.3s; }
-  .topbar.scrolled { background:rgba(250,253,245,0.97); box-shadow:0 1px 8px rgba(0,0,0,0.06); backdrop-filter:blur(12px); }
-  .topbar-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .topbar-logo img { height:36px; width:auto; }
-  .topbar-logo span { font-family:var(--font-display); font-size:1.2rem; color:var(--green-dark); font-weight:800; letter-spacing:-0.02em; }
-  .topbar-links { display:flex; align-items:center; gap:28px; list-style:none; }
-  .topbar-links a { font-size:0.88rem; font-weight:600; color:var(--text-mid); text-decoration:none; letter-spacing:0.01em; transition:color 0.2s; }
-  .topbar-links a:hover { color:var(--green); }
-  .topbar-links .cta-link { background:var(--green); color:#fff; padding:10px 22px; border-radius:100px; font-size:0.85rem; }
-  .topbar-links .cta-link:hover { background:var(--green-dark); color:#fff; }
+  /* NAV */
+  .nav { position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+  .nav-inner { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; cursor:pointer; }
+  .nav-logo img { height:40px; width:auto; }
+  .nav-logo-text { font-family:var(--font-display); font-size:1.3rem; color:var(--green-dark); font-weight:800; }
+  .nav-links { list-style:none; display:flex; gap:32px; align-items:center; }
+  .nav-links a { color:var(--text-muted); font-size:0.95rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--green); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; border-radius:12px; font-weight:700; font-size:1rem; font-family:var(--font-sans); cursor:pointer; transition:all 0.3s; border:none; text-decoration:none; }
+  .btn-primary { background:var(--green); color:#fff; }
+  .btn-primary:hover { background:var(--green-dark); transform:translateY(-1px); box-shadow:0 4px 16px rgba(45,90,27,0.3); }
+  .btn-secondary { background:transparent; color:var(--green); border:2px solid var(--green); }
+  .btn-secondary:hover { background:var(--green); color:#fff; }
+  .btn-outline { background:transparent; color:var(--green); border:1.5px solid var(--border); padding:10px 20px; font-size:0.9rem; border-radius:10px; }
+  .btn-outline:hover { border-color:var(--green); color:var(--green); }
+  .btn-cta { background:var(--green); color:#fff; padding:18px 36px; font-size:1.1rem; border-radius:14px; }
+  .btn-cta:hover { background:var(--green-dark); }
+  .nav-cta { background:var(--green); color:#fff !important; padding:10px 24px; border-radius:10px; font-size:0.9rem; }
+  .nav-cta:hover { background:var(--green-dark); color:#fff; }
+  .container { max-width:1100px; margin:0 auto; }
+  .section-label { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--green); font-weight:700; margin-bottom:8px; text-align:center; }
 
-  /* ─── HAMBURGER ─── */
-  .hamburger { display:none; width:32px; height:32px; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
-  .hamburger span { display:block; height:2.5px; background:var(--green-dark); border-radius:2px; transition:all 0.3s; }
-  .mobile-menu { position:fixed; inset:0; z-index:99; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transform:translateX(100%); transition:transform 0.35s ease; }
-  .mobile-menu.open { transform:translateX(0); }
-  .mobile-menu a { font-size:1.4rem; font-weight:700; color:var(--green-dark); text-decoration:none; font-family:var(--font-display); }
-  .mobile-menu .close-btn { position:absolute; top:20px; right:24px; font-size:2rem; background:none; border:none; color:var(--green-dark); cursor:pointer; }
+  /* HERO */
+  .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:120px 32px 80px; position:relative; overflow:hidden; text-align:center; }
+  .hero-bg { position:absolute; inset:0; z-index:0; }
+  .hero-bg img { width:100%; height:100%; object-fit:cover; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(15,26,8,0.7) 0%,rgba(15,26,8,0.82) 50%,rgba(15,26,8,0.92) 100%); z-index:1; }
+  .hero-content { position:relative; z-index:2; max-width:800px; }
+  .hero-logo { width:clamp(160px,22vw,260px); height:auto; margin:0 auto 28px; filter:drop-shadow(0 4px 24px rgba(0,0,0,0.3)); }
+  .hero-badge { display:inline-block; padding:6px 18px; border-radius:100px; background:rgba(232,255,71,0.15); color:var(--accent); font-size:0.85rem; font-weight:700; letter-spacing:0.05em; margin-bottom:16px; border:1px solid rgba(232,255,71,0.25); }
+  .hero h1 { font-family:var(--font-display); font-size:clamp(2.8rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:12px; color:#fff; }
+  .hero h1 em { font-style:normal; color:var(--accent); }
+  .hero .hero-sub { font-size:clamp(1.1rem,2.5vw,1.35rem); color:rgba(240,244,232,0.75); max-width:600px; margin:0 auto 32px; line-height:1.6; font-weight:400; }
+  .hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .hero .btn-primary { background:var(--accent); color:var(--dark); font-weight:800; }
+  .hero .btn-primary:hover { background:#d4e83a; }
+  .hero .btn-secondary { color:#fff; border-color:rgba(255,255,255,0.3); }
+  .hero .btn-secondary:hover { background:rgba(255,255,255,0.1); }
 
-  /* ─── HERO — SPLIT LAYOUT ─── */
-  .hero { display:grid; grid-template-columns:1fr 1fr; min-height:100vh; }
-  .hero-text { display:flex; flex-direction:column; justify-content:center; padding:clamp(80px,12vh,140px) clamp(28px,5vw,72px) clamp(40px,6vh,80px); }
-  .hero-eyebrow { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; color:var(--green); margin-bottom:16px; }
-  .hero-text h1 { font-family:var(--font-display); font-size:clamp(2.6rem,5.5vw,4.8rem); line-height:1.05; letter-spacing:-0.025em; color:var(--dark); margin-bottom:20px; }
-  .hero-text h1 em { font-style:italic; color:var(--green); }
-  .hero-text .hero-body { font-size:1.1rem; color:var(--text-muted); max-width:440px; margin-bottom:32px; line-height:1.7; }
-  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-  .btn-fill { display:inline-flex; align-items:center; gap:8px; padding:16px 32px; background:var(--green); color:#fff; border-radius:100px; font-weight:700; font-size:0.95rem; text-decoration:none; border:none; cursor:pointer; font-family:var(--font-body); transition:all 0.25s; }
-  .btn-fill:hover { background:var(--green-dark); transform:translateY(-1px); box-shadow:0 6px 20px rgba(45,90,27,0.25); }
-  .btn-ghost { display:inline-flex; align-items:center; gap:6px; padding:16px 28px; background:none; color:var(--green); border:2px solid var(--border); border-radius:100px; font-weight:700; font-size:0.95rem; text-decoration:none; cursor:pointer; font-family:var(--font-body); transition:all 0.25s; }
-  .btn-ghost:hover { border-color:var(--green); background:rgba(45,90,27,0.04); }
-  .hero-img { position:relative; overflow:hidden; }
-  .hero-img img { width:100%; height:100%; object-fit:cover; }
-  .hero-img::after { content:''; position:absolute; bottom:0; left:0; right:0; height:120px; background:linear-gradient(transparent,rgba(15,26,8,0.15)); pointer-events:none; }
+  /* SERVICES */
+  .services-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .service-card { background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:40px; transition:all 0.3s; display:flex; gap:24px; align-items:flex-start; text-align:left; }
+  .service-card:hover { border-color:var(--green); box-shadow:0 4px 20px rgba(45,90,27,0.08); transform:translateY(-2px); }
+  .service-icon { width:56px; height:56px; border-radius:16px; background:var(--surface); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .service-icon svg { width:28px; height:28px; fill:none; stroke:var(--green); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .service-card h3 { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
+  .service-card p { color:var(--text-muted); font-size:0.95rem; line-height:1.6; }
 
-  /* ─── TICKER STRIP ─── */
-  .ticker { background:var(--green-dark); padding:14px 0; overflow:hidden; white-space:nowrap; }
-  .ticker-track { display:inline-flex; animation:scroll 30s linear infinite; }
-  .ticker-item { display:inline-flex; align-items:center; gap:8px; padding:0 36px; font-size:0.82rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; }
-  .ticker-item::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); opacity:0.5; }
-  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  /* VALUES */
+  .values-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .value-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
+  .value-icon { width:48px; height:48px; border-radius:14px; background:rgba(45,90,27,0.08); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+  .value-icon svg { width:24px; height:24px; fill:none; stroke:var(--green); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .value-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:6px; }
+  .value-card p { color:var(--text-muted); font-size:0.9rem; line-height:1.5; }
 
-  /* ─── SERVICES — ALTERNATING BLOCKS ─── */
-  .svc-block { display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
-  .svc-block:nth-child(even) .svc-photo { order:-1; }
-  .svc-photo { position:relative; overflow:hidden; }
-  .svc-photo img { width:100%; height:100%; object-fit:cover; }
-  .svc-content { display:flex; flex-direction:column; justify-content:center; padding:clamp(36px,5vw,72px); }
-  .svc-num { font-size:0.72rem; font-weight:800; color:var(--accent-dark); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:10px; }
-  .svc-content h3 { font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.4rem); margin-bottom:14px; color:var(--dark); letter-spacing:-0.02em; }
-  .svc-content p { color:var(--text-muted); font-size:1rem; line-height:1.7; max-width:440px; margin-bottom:24px; }
-  .svc-tag { display:inline-block; padding:6px 16px; border:1.5px solid var(--border); border-radius:100px; font-size:0.8rem; font-weight:600; color:var(--text-mid); margin-right:6px; margin-bottom:6px; }
-  .svc-block:nth-child(odd) .svc-content { background:var(--white); }
-  .svc-block:nth-child(even) .svc-content { background:var(--surface); }
+  /* GALLERY */
+  .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .gallery-grid img { width:100%; height:250px; object-fit:cover; border-radius:16px; transition:transform 0.3s; cursor:pointer; }
+  .gallery-grid img:hover { transform:scale(1.02); }
 
-  /* ─── GALLERY — HORIZONTAL SCROLL ─── */
-  .gallery-section { padding:clamp(60px,8vw,100px) 0; background:var(--dark); }
-  .gallery-header { padding:0 clamp(28px,5vw,72px); margin-bottom:36px; }
-  .gallery-header .label { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; color:var(--accent); margin-bottom:8px; }
-  .gallery-header h2 { font-family:var(--font-display); font-size:clamp(1.8rem,4vw,3rem); color:#fff; letter-spacing:-0.02em; }
-  .gallery-scroll { display:flex; gap:16px; overflow-x:auto; padding:0 clamp(28px,5vw,72px) 20px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-  .gallery-scroll::-webkit-scrollbar { display:none; }
-  .gallery-scroll img { flex:0 0 auto; width:clamp(260px,35vw,400px); height:clamp(200px,28vw,320px); object-fit:cover; border-radius:12px; scroll-snap-align:start; transition:transform 0.3s; }
-  .gallery-scroll img:hover { transform:scale(1.02); }
+  /* TESTIMONIALS */
+  .testimonials-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .testimonial-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:28px; }
+  .testimonial-card .stars { color:var(--accent-dark); font-size:1.1rem; margin-bottom:10px; }
+  .testimonial-card blockquote { font-size:0.95rem; color:var(--text); line-height:1.6; font-style:italic; margin-bottom:12px; }
+  .testimonial-card .author { font-size:0.8rem; color:var(--text-muted); font-weight:600; }
 
-  /* ─── TESTIMONIAL — SINGLE ROTATING ─── */
-  .testi-section { padding:clamp(60px,8vw,100px) clamp(28px,5vw,72px); background:var(--white); text-align:center; }
-  .testi-section .label { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; color:var(--green); margin-bottom:12px; }
-  .testi-quote { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,2.2rem); line-height:1.4; max-width:740px; margin:0 auto 20px; color:var(--dark); font-weight:700; font-style:italic; }
-  .testi-author { font-size:0.9rem; color:var(--text-muted); font-weight:600; margin-bottom:28px; }
-  .testi-dots { display:flex; justify-content:center; gap:10px; }
-  .testi-dot { width:10px; height:10px; border-radius:50%; background:var(--border); border:none; cursor:pointer; transition:all 0.25s; padding:0; }
-  .testi-dot.active { background:var(--green); transform:scale(1.2); }
+  /* FORM */
+  .form-group { margin-bottom:16px; }
+  .form-group label { display:block; font-weight:600; font-size:0.9rem; margin-bottom:6px; color:var(--text); }
+  .form-group input, .form-group textarea, .form-group select { width:100%; padding:14px 16px; border:2px solid var(--border); border-radius:12px; font-size:1rem; font-family:var(--font-sans); color:var(--text); background:var(--bg); transition:border-color 0.2s; outline:none; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--green); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 
-  /* ─── ABOUT — EDITORIAL ─── */
-  .about-section { display:grid; grid-template-columns:1fr 1fr; gap:0; }
-  .about-photo { position:relative; overflow:hidden; min-height:500px; }
-  .about-photo img { width:100%; height:100%; object-fit:cover; }
-  .about-text { display:flex; flex-direction:column; justify-content:center; padding:clamp(36px,5vw,72px); background:var(--surface); }
-  .about-text .label { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; color:var(--green); margin-bottom:10px; }
-  .about-text h2 { font-family:var(--font-display); font-size:clamp(1.8rem,3.5vw,2.6rem); margin-bottom:18px; color:var(--dark); letter-spacing:-0.02em; }
-  .about-text p { color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px; max-width:480px; }
-  .stat-row { display:flex; gap:32px; margin-top:20px; padding-top:20px; border-top:1px solid var(--border); }
-  .stat { text-align:left; }
-  .stat-num { font-family:var(--font-display); font-size:2rem; font-weight:800; color:var(--green); line-height:1; }
-  .stat-label { font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px; }
+  /* PAGE SECTIONS */
+  .page-panel { display:none; }
+  .page-panel.active { display:block; }
+  .page-hero { padding:120px 32px 48px; text-align:center; background:var(--surface); }
+  .page-hero h1 { font-family:var(--font-display); font-size:clamp(2rem,6vw,3.5rem); margin-bottom:12px; }
+  .page-hero h1 em { font-style:normal; color:var(--green); }
+  .page-hero p { color:var(--text-muted); font-size:1.1rem; max-width:600px; margin:0 auto; }
 
-  /* ─── CONTACT — TWO-COL ─── */
-  .contact-section { display:grid; grid-template-columns:1fr 1fr; min-height:600px; }
-  .contact-info { background:var(--green-dark); color:#fff; display:flex; flex-direction:column; justify-content:center; padding:clamp(36px,5vw,72px); }
-  .contact-info .label { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; color:var(--accent); margin-bottom:10px; }
-  .contact-info h2 { font-family:var(--font-display); font-size:clamp(1.8rem,3.5vw,2.6rem); margin-bottom:24px; letter-spacing:-0.02em; }
-  .contact-detail { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
-  .contact-detail .icon { width:40px; height:40px; border-radius:50%; background:rgba(232,255,71,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .contact-detail .icon svg { width:18px; height:18px; fill:none; stroke:var(--accent); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-  .contact-detail .info-label { font-size:0.78rem; color:rgba(255,255,255,0.5); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; }
-  .contact-detail a, .contact-detail span { color:#fff; font-size:1rem; font-weight:600; text-decoration:none; display:block; margin-top:2px; }
-  .contact-detail a:hover { color:var(--accent); }
-  .contact-form { background:var(--white); display:flex; flex-direction:column; justify-content:center; padding:clamp(36px,5vw,72px); }
-  .contact-form h3 { font-family:var(--font-display); font-size:1.6rem; margin-bottom:24px; color:var(--dark); }
-  .field { margin-bottom:14px; }
-  .field label { display:block; font-size:0.82rem; font-weight:600; color:var(--text-mid); margin-bottom:5px; }
-  .field input, .field textarea, .field select { width:100%; padding:13px 16px; border:1.5px solid var(--border); border-radius:var(--radius); font-size:0.95rem; font-family:var(--font-body); color:var(--text); background:var(--bg); transition:border-color 0.2s; outline:none; }
-  .field input:focus, .field textarea:focus, .field select:focus { border-color:var(--green); }
-  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .btn-submit { width:100%; padding:16px; background:var(--green); color:#fff; border:none; border-radius:var(--radius); font-size:1rem; font-weight:700; font-family:var(--font-body); cursor:pointer; transition:all 0.25s; margin-top:4px; }
-  .btn-submit:hover { background:var(--green-dark); }
+  /* FAQ */
+  .faq-item { border:1px solid var(--border); border-radius:14px; margin-bottom:12px; overflow:hidden; }
+  .faq-q { padding:20px 24px; font-weight:700; font-size:1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; background:var(--bg); transition:background 0.2s; }
+  .faq-q:hover { background:var(--surface); }
+  .faq-a { padding:0 24px 20px; color:var(--text-muted); font-size:0.95rem; line-height:1.6; display:none; }
+  .faq-item.open .faq-a { display:block; }
+  .faq-item.open .faq-q { background:var(--surface); }
 
-  /* ─── SERVICE AREA STRIP ─── */
-  .area-strip { background:var(--surface); padding:40px clamp(28px,5vw,72px); text-align:center; }
-  .area-strip p { font-size:0.9rem; color:var(--text-muted); max-width:600px; margin:0 auto; }
-  .area-strip strong { color:var(--text-mid); }
+  /* NOTICE */
+  .notice-bar { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:16px 24px; font-size:0.9rem; color:var(--text-muted); text-align:center; }
 
-  /* ─── FOOTER ─── */
-  footer { background:var(--dark); padding:48px clamp(28px,5vw,72px) 28px; }
-  .footer-inner { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; padding-bottom:28px; border-bottom:1px solid rgba(255,255,255,0.08); }
-  .footer-brand { }
-  .footer-brand-name { font-family:var(--font-display); font-size:1.3rem; color:#fff; font-weight:800; }
-  .footer-brand-name em { font-style:normal; color:var(--accent); }
-  .footer-brand-tag { font-size:0.82rem; color:rgba(255,255,255,0.35); margin-top:4px; }
-  .footer-nav { display:flex; gap:24px; flex-wrap:wrap; }
-  .footer-nav a { font-size:0.85rem; color:rgba(255,255,255,0.45); text-decoration:none; font-weight:500; transition:color 0.2s; }
-  .footer-nav a:hover { color:var(--accent); }
-  .footer-copy { text-align:center; padding-top:24px; font-size:0.75rem; color:rgba(255,255,255,0.25); }
+  /* CTA SECTION */
+  .cta-section { background:var(--green-dark); padding:80px 32px; text-align:center; }
+  .cta-section h2 { font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); color:#fff; margin-bottom:12px; }
+  .cta-section p { color:rgba(255,255,255,0.7); font-size:1.1rem; margin-bottom:28px; max-width:500px; margin-left:auto; margin-right:auto; }
+  .cta-section .btn-primary { background:var(--accent); color:var(--dark); font-weight:800; }
+  .cta-section .btn-primary:hover { background:#d4e83a; }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width:900px) {
-    .topbar-links { display:none; }
-    .hamburger { display:flex; }
-    .hero { grid-template-columns:1fr; }
-    .hero-img { height:50vh; }
-    .svc-block { grid-template-columns:1fr; }
-    .svc-block:nth-child(even) .svc-photo { order:0; }
-    .svc-photo { height:300px; }
-    .about-section { grid-template-columns:1fr; }
-    .about-photo { min-height:300px; }
-    .contact-section { grid-template-columns:1fr; }
-    .stat-row { gap:20px; }
+  /* FOOTER */
+  footer { background:var(--dark); color:var(--dark-text); padding:64px 32px 32px; text-align:center; }
+  .footer-logo { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:8px; }
+  .footer-logo img { height:36px; width:auto; filter:brightness(0) invert(1); opacity:0.8; }
+  .footer-logo-text { font-family:var(--font-display); font-size:1.5rem; color:var(--dark-text); }
+  .footer-logo-text span { color:var(--accent); }
+  .footer-tagline { color:var(--dark-text-muted); font-size:0.9rem; margin-bottom:24px; }
+  .footer-links { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
+  .footer-links a { color:var(--dark-text-muted); font-size:0.85rem; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--accent); }
+  .footer-bottom { border-top:1px solid var(--dark-border); padding-top:20px; font-size:0.8rem; color:var(--dark-text-muted); }
+
+  /* RESPONSIVE */
+  @media (max-width:768px) {
+    .nav-links { display:none; }
+    .services-grid, .values-grid, .testimonials-grid, .form-row { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr 1fr; }
+    .service-card { flex-direction:column; text-align:center; align-items:center; }
+    .hero-actions { flex-direction:column; align-items:center; }
+    .hero-logo { width:clamp(120px,40vw,200px); }
   }
 </style>
 </head>
 <body>
 
-<!-- ─── TOPBAR ─── -->
-<header class="topbar" id="topbar">
-  <a href="#top" class="topbar-logo">
-    <img src="mow-bros-logo-emblem.png" alt="NZ Mow Bros Logo">
-    <span>NZ Mow Bros</span>
-  </a>
-  <ul class="topbar-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Our Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#quote" class="cta-link">Free Quote</a></li>
-  </ul>
-  <button class="hamburger" onclick="document.getElementById('mob-menu').classList.add('open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">
+      <img src="mow-bros-logo-emblem.png" alt="NZ Mow Bros">
+      <span class="nav-logo-text">NZ Mow Bros</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('services')">Services</a></li>
+      <li><a href="#" onclick="showPage('gallery')">Our Work</a></li>
+      <li><a href="#" onclick="showPage('about')">About</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+      <li><a href="#" onclick="showPage('quote')" class="nav-cta">Free Quote</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="mobile-menu" id="mob-menu">
-  <button class="close-btn" onclick="this.parentElement.classList.remove('open')">&times;</button>
-  <a href="#services" onclick="this.parentElement.classList.remove('open')">Services</a>
-  <a href="#work" onclick="this.parentElement.classList.remove('open')">Our Work</a>
-  <a href="#about" onclick="this.parentElement.classList.remove('open')">About</a>
-  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a>
-  <a href="#quote" onclick="this.parentElement.classList.remove('open')">Free Quote</a>
+<!-- ==================== HOME ==================== -->
+<div class="page-panel active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="lawn-poolside.jpeg" alt="Freshly mowed lawn">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="mow-bros-logo-full.png" alt="NZ Mow Bros Logo" class="hero-logo">
+      <div class="hero-badge">North Shore's Local Lawn Experts</div>
+      <h1>Your lawn, <em>sorted.</em></h1>
+      <p class="hero-sub">Professional lawn mowing, hedge trimming, and garden maintenance across Auckland's North Shore. Affordable, reliable, quality work.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary" onclick="showPage('quote')">Get a Free Quote</a>
+        <a href="tel:0224595225" class="btn btn-secondary">Call Jasper — 022 459 5225</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section style="padding:80px 32px; background:var(--surface);">
+    <div class="container">
+      <div class="section-label">What We Do</div>
+      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); text-align:center; margin-bottom:40px;">Everything your property needs</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 18v3M8 21h8"/><path d="M2 12h20"/></svg></div>
+          <div><h3>Lawn Mowing</h3><p>Regular mowing with clean striping and edging. We leave your lawn looking pristine every time — no mess, no clippings left behind.</p></div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><h3>Hedge Trimming</h3><p>Neat, shaped hedges that frame your property. We handle hedges of all sizes and keep them looking sharp year-round.</p></div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22c6.23-.05 7.87-5.57 7.5-10-.36-4.34-3.95-9.96-7.5-10-3.55.04-7.14 5.66-7.5 10-.37 4.43 1.27 9.95 7.5 10z"/><path d="M12 22V8"/><path d="M8 14l4-4 4 4"/></svg></div>
+          <div><h3>Garden Tidy-Ups</h3><p>Full garden clean-ups including weeding, pruning, green waste removal, and general tidying. We'll get your outdoor space back in order.</p></div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2v8M4.93 10.93l2.83 2.83M2 18h4M17.07 10.93l-2.83 2.83M18 18h4M12 14a4 4 0 100 8 4 4 0 000-8z"/></svg></div>
+          <div><h3>Weeding &amp; Weed Spraying</h3><p>Targeted weed removal and spraying to keep your lawns and gardens clean. We use effective treatments that won't harm your grass.</p></div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <a href="#" class="btn btn-secondary" onclick="showPage('services')">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section style="padding:80px 32px;">
+    <div class="container">
+      <div class="section-label">Why Choose Us</div>
+      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); text-align:center; margin-bottom:40px;">No gimmicks, just <em style="font-style:normal; color:var(--green);">great lawns</em></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Reliable &amp; On Time</h3>
+          <p>We show up when we say we will. Consistent, dependable service every visit.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>Local Lads</h3>
+          <p>Born and raised in NZ. We know North Shore properties and what they need.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+          <h3>Great Communicators</h3>
+          <p>Clear pricing, honest updates, and always a text or call away.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <h3>Quality Results</h3>
+          <p>We take pride in every job. Trusted by 50+ homeowners across the shore.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section style="padding:80px 32px; background:var(--surface);">
+    <div class="container">
+      <div class="section-label">What Our Customers Say</div>
+      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); text-align:center; margin-bottom:40px;">Trusted by the neighbourhood</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"As a customer based on Waiheke I can highly recommend NZ Mow Bros. They do an outstanding job, are reliable and well priced."</blockquote>
+          <div class="author">— Waiheke Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Highly recommend — these young lads are professional, great communicators, always on time and do a great job! Happy to provide a reference."</blockquote>
+          <div class="author">— North Shore Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Highly highly recommend as they mow my place. Great service, thorough job, coupled with reasonable rates — could not be happier!"</blockquote>
+          <div class="author">— Local Homeowner</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Both hard working personable young men with a very good reputation from their Waiheke lawns work."</blockquote>
+          <div class="author">— Waiheke Resident</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready for a tidy lawn?</h2>
+    <p>Get a free, no-obligation quote in minutes. We'll come check out your property and give you an honest price.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="#" class="btn btn-primary" onclick="showPage('quote')">Get a Free Quote</a>
+      <a href="tel:0224595225" class="btn btn-secondary" style="color:#fff; border-color:rgba(255,255,255,0.3);">Call 022 459 5225</a>
+    </div>
+  </section>
 </div>
 
-<!-- ─── HERO ─── -->
-<section class="hero" id="top">
-  <div class="hero-text">
-    <div class="hero-eyebrow">North Shore &amp; Waiheke Island</div>
-    <h1>Your lawn, <em>sorted.</em></h1>
-    <p class="hero-body">Professional lawn mowing, hedge trimming, and garden maintenance by two local lads who take pride in every job. Reliable, affordable, quality work.</p>
-    <div class="hero-actions">
-      <a href="#quote" class="btn-fill">Get a Free Quote &rarr;</a>
-      <a href="tel:0224595225" class="btn-ghost">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        022 459 5225
-      </a>
+<!-- ==================== SERVICES ==================== -->
+<div class="page-panel" id="page-services">
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">Our Services</div>
+      <h1>What we <em>do</em></h1>
+      <p>From regular mowing to full garden overhauls — we've got your property covered.</p>
     </div>
-  </div>
-  <div class="hero-img">
-    <img src="lawn-poolside.jpeg" alt="Beautifully maintained poolside lawn">
-  </div>
-</section>
+  </section>
 
-<!-- ─── TICKER ─── -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Lawn Mowing</span>
-    <span class="ticker-item">Hedge Trimming</span>
-    <span class="ticker-item">Garden Tidy-Ups</span>
-    <span class="ticker-item">Weed Spraying</span>
-    <span class="ticker-item">Regular Contracts</span>
-    <span class="ticker-item">Free Quotes</span>
-    <span class="ticker-item">North Shore</span>
-    <span class="ticker-item">Waiheke Island</span>
-    <span class="ticker-item">Lawn Mowing</span>
-    <span class="ticker-item">Hedge Trimming</span>
-    <span class="ticker-item">Garden Tidy-Ups</span>
-    <span class="ticker-item">Weed Spraying</span>
-    <span class="ticker-item">Regular Contracts</span>
-    <span class="ticker-item">Free Quotes</span>
-    <span class="ticker-item">North Shore</span>
-    <span class="ticker-item">Waiheke Island</span>
-  </div>
+  <section style="padding:48px 32px 64px;">
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card" style="padding:36px;">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 18v3M8 21h8"/><path d="M2 12h20"/></svg></div>
+          <div><h3>Lawn Mowing</h3><p>Regular lawn mowing with clean lines, edging, and clipping removal. We'll keep your lawn looking its best week after week. Available for one-off jobs or regular contracts.</p><a href="#" class="btn btn-outline" style="margin-top:16px;" onclick="showPage('quote')">Get a Quote</a></div>
+        </div>
+        <div class="service-card" style="padding:36px;">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><h3>Hedge Trimming</h3><p>Professional hedge trimming and shaping for hedges of all sizes. We bring the right tools for every job and leave your hedges looking sharp and well-maintained.</p><a href="#" class="btn btn-outline" style="margin-top:16px;" onclick="showPage('quote')">Get a Quote</a></div>
+        </div>
+        <div class="service-card" style="padding:36px;">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22c6.23-.05 7.87-5.57 7.5-10-.36-4.34-3.95-9.96-7.5-10-3.55.04-7.14 5.66-7.5 10-.37 4.43 1.27 9.95 7.5 10z"/><path d="M12 22V8"/><path d="M8 14l4-4 4 4"/></svg></div>
+          <div><h3>Garden Tidy-Ups</h3><p>Complete garden clean-ups including weeding, pruning, leaf clearing, green waste removal, and general tidying. Perfect before events, property inspections, or just because it's overdue.</p><a href="#" class="btn btn-outline" style="margin-top:16px;" onclick="showPage('quote')">Get a Quote</a></div>
+        </div>
+        <div class="service-card" style="padding:36px;">
+          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2v8M4.93 10.93l2.83 2.83M2 18h4M17.07 10.93l-2.83 2.83M18 18h4M12 14a4 4 0 100 8 4 4 0 000-8z"/></svg></div>
+          <div><h3>Weeding &amp; Weed Spraying</h3><p>Targeted weed removal by hand and effective spraying treatments to keep your lawns and garden beds clean. Safe treatments that get rid of weeds without harming your grass.</p><a href="#" class="btn btn-outline" style="margin-top:16px;" onclick="showPage('quote')">Get a Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 32px 64px;">
+    <div class="container" style="max-width:700px;">
+      <div class="notice-bar">
+        <strong>Regular contracts available.</strong> We offer weekly, fortnightly, and monthly lawn care plans at discounted rates. <a href="#" onclick="showPage('quote')" style="font-weight:700;">Ask about contracts →</a>
+      </div>
+    </div>
+  </section>
 </div>
 
-<!-- ─── SERVICES ─── -->
-<div id="services">
-  <div class="svc-block">
-    <div class="svc-content">
-      <div class="svc-num">01 &mdash; Service</div>
-      <h3>Lawn Mowing</h3>
-      <p>Regular mowing with clean striping and sharp edging. We leave your lawn looking pristine every time — no mess, no clippings left behind. Available as a one-off or regular contract.</p>
-      <div>
-        <span class="svc-tag">Weekly</span>
-        <span class="svc-tag">Fortnightly</span>
-        <span class="svc-tag">One-off</span>
-      </div>
+<!-- ==================== GALLERY ==================== -->
+<div class="page-panel" id="page-gallery">
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">Our Work</div>
+      <h1>See the <em>results</em></h1>
+      <p>Real lawns, real customers, real results. Here's some of our recent work across the North Shore and Waiheke.</p>
     </div>
-    <div class="svc-photo"><img src="lawn-front-yard.jpeg" alt="Front yard lawn mowing"></div>
-  </div>
+  </section>
 
-  <div class="svc-block">
-    <div class="svc-content">
-      <div class="svc-num">02 &mdash; Service</div>
-      <h3>Hedge Trimming</h3>
-      <p>Neat, shaped hedges that frame your property. We handle hedges of all sizes and bring the right tools for every job — keeping them looking sharp year-round.</p>
-      <div>
-        <span class="svc-tag">All sizes</span>
-        <span class="svc-tag">Shaping</span>
-        <span class="svc-tag">Green waste removed</span>
+  <section style="padding:48px 32px 80px;">
+    <div class="container">
+      <div class="gallery-grid">
+        <img src="lawn-poolside.jpeg" alt="Poolside lawn mowing">
+        <img src="lawn-pergola.jpeg" alt="Garden lawn under pergola">
+        <img src="lawn-vineyard.jpeg" alt="Vineyard lawn maintenance">
+        <img src="lawn-front-yard.jpeg" alt="Front yard lawn mowing">
+        <img src="lawn-garden-path.jpeg" alt="Garden path lawn care">
+        <img src="lawn-backyard.jpeg" alt="Backyard lawn mowing">
       </div>
     </div>
-    <div class="svc-photo"><img src="lawn-pergola.jpeg" alt="Garden maintenance under pergola"></div>
-  </div>
-
-  <div class="svc-block">
-    <div class="svc-content">
-      <div class="svc-num">03 &mdash; Service</div>
-      <h3>Garden Tidy-Ups</h3>
-      <p>Full garden clean-ups including weeding, pruning, leaf clearing, and green waste removal. Perfect before events, property inspections, or just because it's overdue.</p>
-      <div>
-        <span class="svc-tag">Weeding</span>
-        <span class="svc-tag">Pruning</span>
-        <span class="svc-tag">Waste removal</span>
-      </div>
-    </div>
-    <div class="svc-photo"><img src="lawn-garden-path.jpeg" alt="Garden path after tidy-up"></div>
-  </div>
-
-  <div class="svc-block">
-    <div class="svc-content">
-      <div class="svc-num">04 &mdash; Service</div>
-      <h3>Weeding &amp; Weed Spraying</h3>
-      <p>Targeted weed removal and effective spraying treatments to keep your lawns and garden beds clean. Safe treatments that get rid of weeds without harming your grass.</p>
-      <div>
-        <span class="svc-tag">Hand weeding</span>
-        <span class="svc-tag">Spray treatment</span>
-        <span class="svc-tag">Lawn safe</span>
-      </div>
-    </div>
-    <div class="svc-photo"><img src="lawn-vineyard.jpeg" alt="Vineyard lawn maintenance"></div>
-  </div>
+  </section>
 </div>
 
-<!-- ─── GALLERY ─── -->
-<section class="gallery-section" id="work">
-  <div class="gallery-header">
-    <div class="label">Our Work</div>
-    <h2>Real lawns, real results</h2>
-  </div>
-  <div class="gallery-scroll">
-    <img src="lawn-poolside.jpeg" alt="Poolside lawn">
-    <img src="lawn-pergola.jpeg" alt="Garden under pergola">
-    <img src="lawn-vineyard.jpeg" alt="Vineyard lawn">
-    <img src="lawn-front-yard.jpeg" alt="Front yard">
-    <img src="lawn-garden-path.jpeg" alt="Garden path">
-    <img src="lawn-backyard.jpeg" alt="Backyard lawn">
-    <img src="lawn-side-strip.jpeg" alt="Side strip">
-  </div>
-</section>
+<!-- ==================== ABOUT ==================== -->
+<div class="page-panel" id="page-about">
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">About Us</div>
+      <h1>Meet the <em>Bros</em></h1>
+      <p>Two local lads with a passion for tidy lawns and honest work.</p>
+    </div>
+  </section>
 
-<!-- ─── TESTIMONIALS ─── -->
-<section class="testi-section">
-  <div class="label">What People Say</div>
-  <blockquote class="testi-quote" id="testi-text">"As a customer based on Waiheke I can highly recommend NZ Mow Bros. They do an outstanding job, are reliable and well priced."</blockquote>
-  <div class="testi-author" id="testi-author">Waiheke Customer</div>
-  <div class="testi-dots" id="testi-dots">
-    <button class="testi-dot active" data-i="0"></button>
-    <button class="testi-dot" data-i="1"></button>
-    <button class="testi-dot" data-i="2"></button>
-    <button class="testi-dot" data-i="3"></button>
-  </div>
-</section>
-
-<!-- ─── ABOUT ─── -->
-<section class="about-section" id="about">
-  <div class="about-photo">
-    <img src="lawn-backyard.jpeg" alt="NZ Mow Bros at work">
-  </div>
-  <div class="about-text">
-    <div class="label">About Us</div>
-    <h2>Meet the Bros</h2>
-    <p>We're Jasper and Luke — two mates who started mowing lawns on Waiheke Island and built a reputation for reliable, quality work through word of mouth alone.</p>
-    <p>We're not a big corporate outfit. We're two local lads who show up on time, do a thorough job, and charge a fair price. Most of our customers have been with us since day one.</p>
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Happy customers</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Positive reviews</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Local lads</div>
+  <section style="padding:48px 32px 64px;">
+    <div class="container" style="max-width:750px;">
+      <div style="text-align:center;">
+        <h2 style="font-family:var(--font-display); margin-bottom:16px;">Our Story</h2>
+        <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7; margin-bottom:16px;">We're Jasper and Luke — two mates who started mowing lawns on Waiheke Island and quickly built a reputation for reliable, quality work. After growing our client base through word of mouth alone, we've expanded to Auckland's North Shore.</p>
+        <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7; margin-bottom:16px;">We're not a big corporate outfit with flashy gear and inflated prices. We're two hard-working local lads who show up on time, do a thorough job, and charge a fair price. That's it.</p>
+        <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7;">Most of our customers come through recommendations — and many have been with us since day one. We treat every property like it's our own, and every customer like a neighbour.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ─── SERVICE AREA ─── -->
-<div class="area-strip">
-  <p><strong>Service Area:</strong> Auckland's North Shore — Bayswater, Takapuna, Devonport, Milford, Castor Bay, Browns Bay, and surrounding areas. Also servicing Waiheke Island.</p>
+  <section style="padding:0 32px 64px;">
+    <div class="container">
+      <div class="values-grid">
+        <div class="value-card">
+          <h3 style="font-size:2.5rem; color:var(--green); font-family:var(--font-display);">50+</h3>
+          <p>Happy customers across the Shore and Waiheke</p>
+        </div>
+        <div class="value-card">
+          <h3 style="font-size:2.5rem; color:var(--green); font-family:var(--font-display);">100%</h3>
+          <p>Positive reviews — word of mouth is our best marketing</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
-<!-- ─── CONTACT + QUOTE ─── -->
-<section class="contact-section" id="contact">
-  <div class="contact-info">
-    <div class="label">Get in Touch</div>
-    <h2>Let's have a yarn</h2>
-    <div class="contact-detail">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-      <div>
-        <div class="info-label">Jasper</div>
-        <a href="tel:0224595225">022 459 5225</a>
-      </div>
+<!-- ==================== CONTACT ==================== -->
+<div class="page-panel" id="page-contact">
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">Contact Us</div>
+      <h1>Get in <em>touch</em></h1>
+      <p>Call, text, or email — we'll get back to you fast.</p>
     </div>
-    <div class="contact-detail">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-      <div>
-        <div class="info-label">Luke</div>
-        <a href="tel:02108783970">021 087 83970</a>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div>
-        <div class="info-label">Email</div>
-        <a href="mailto:nzmowbros@gmail.com">nzmowbros@gmail.com</a>
-      </div>
-    </div>
-  </div>
-  <div class="contact-form" id="quote">
-    <h3>Get a free quote</h3>
-    <form onsubmit="return false;">
-      <div class="field-row">
-        <div class="field"><label>Name</label><input type="text" placeholder="Full name"></div>
-        <div class="field"><label>Phone</label><input type="tel" placeholder="021 123 4567"></div>
-      </div>
-      <div class="field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-      <div class="field"><label>Address / Suburb</label><input type="text" placeholder="e.g. 12 Smith St, Takapuna"></div>
-      <div class="field">
-        <label>What do you need?</label>
-        <select>
-          <option value="">Select a service...</option>
-          <option>Lawn Mowing (one-off)</option>
-          <option>Lawn Mowing (regular contract)</option>
-          <option>Hedge Trimming</option>
-          <option>Garden Tidy-Up</option>
-          <option>Weeding / Weed Spraying</option>
-          <option>Multiple Services</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="field"><label>Anything else?</label><textarea rows="3" placeholder="Rough lawn size, how often, any specifics..."></textarea></div>
-      <button class="btn-submit" type="submit">Send Quote Request</button>
-      <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:var(--text-muted);">We'll get back to you within a few hours.</p>
-    </form>
-  </div>
-</section>
+  </section>
 
-<!-- ─── FOOTER ─── -->
+  <section style="padding:48px 32px 80px;">
+    <div class="container" style="max-width:700px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px;">
+        <div class="value-card">
+          <h3>Jasper</h3>
+          <p style="margin-top:6px;"><a href="tel:0224595225" style="font-weight:700; font-size:1.1rem;">022 459 5225</a></p>
+        </div>
+        <div class="value-card">
+          <h3>Luke</h3>
+          <p style="margin-top:6px;"><a href="tel:02108783970" style="font-weight:700; font-size:1.1rem;">021 087 83970</a></p>
+        </div>
+      </div>
+      <div class="value-card" style="text-align:center; margin-bottom:40px;">
+        <h3>Email</h3>
+        <p style="margin-top:6px;"><a href="mailto:nzmowbros@gmail.com" style="font-weight:700; font-size:1.1rem;">nzmowbros@gmail.com</a></p>
+      </div>
+      <div class="notice-bar">
+        <strong>Service Area:</strong> Auckland's North Shore — Bayswater, Takapuna, Devonport, Milford, Castor Bay, Browns Bay, and surrounding areas.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== QUOTE ==================== -->
+<div class="page-panel" id="page-quote">
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">Free Quote</div>
+      <h1>Get a <em>free quote</em></h1>
+      <p>Tell us about your property and we'll get back to you with an honest price — usually within a few hours.</p>
+    </div>
+  </section>
+
+  <section style="padding:48px 32px 80px;">
+    <div class="container" style="max-width:600px;">
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="e.g. 021 123 4567"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Address / Suburb</label><input type="text" placeholder="e.g. 12 Smith St, Takapuna"></div>
+        <div class="form-group">
+          <label>What do you need?</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Lawn Mowing (one-off)</option>
+            <option>Lawn Mowing (regular contract)</option>
+            <option>Hedge Trimming</option>
+            <option>Garden Tidy-Up</option>
+            <option>Weeding / Weed Spraying</option>
+            <option>Multiple Services</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Tell us more (optional)</label><textarea rows="4" placeholder="Rough lawn size, how often, any specific needs..."></textarea></div>
+        <button class="btn btn-cta" style="width:100%;" type="submit">Send Quote Request</button>
+        <p style="text-align:center; margin-top:12px; font-size:0.85rem; color:var(--text-muted);">We'll get back to you within a few hours. No spam, ever.</p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-brand-name">NZ <em>Mow Bros</em></div>
-      <div class="footer-brand-tag">North Shore Local Lawn Experts</div>
-    </div>
-    <nav class="footer-nav">
-      <a href="#top">Home</a>
-      <a href="#services">Services</a>
-      <a href="#work">Our Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#quote">Free Quote</a>
-    </nav>
+  <div class="footer-logo">
+    <img src="mow-bros-logo-emblem.png" alt="NZ Mow Bros">
+    <span class="footer-logo-text">NZ <span>Mow Bros</span></span>
   </div>
-  <div class="footer-copy">&copy; 2026 NZ Mow Bros Limited. All rights reserved.</div>
+  <div class="footer-tagline">North Shore Local Lawn Experts</div>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('services')">Services</a>
+    <a href="#" onclick="showPage('gallery')">Our Work</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+    <a href="#" onclick="showPage('quote')">Free Quote</a>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 NZ Mow Bros Limited. All rights reserved.<br>
+    <span style="opacity:0.5;">Jasper: 022 459 5225 &nbsp;·&nbsp; Luke: 021 087 83970 &nbsp;·&nbsp; nzmowbros@gmail.com</span>
+  </div>
 </footer>
 
 <script>
-// Topbar scroll effect
-const topbar = document.getElementById('topbar');
-window.addEventListener('scroll', () => {
-  topbar.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// Testimonial rotation
-const testimonials = [
-  { text: '"As a customer based on Waiheke I can highly recommend NZ Mow Bros. They do an outstanding job, are reliable and well priced."', author: 'Waiheke Customer' },
-  { text: '"Highly recommend \u2014 these young lads are professional, great communicators, always on time and do a great job!"', author: 'North Shore Customer' },
-  { text: '"Highly highly recommend as they mow my place. Great service, thorough job, coupled with reasonable rates \u2014 could not be happier!"', author: 'Local Homeowner' },
-  { text: '"Both hard working personable young men with a very good reputation from their Waiheke lawns work."', author: 'Waiheke Resident' }
-];
-let current = 0;
-const tText = document.getElementById('testi-text');
-const tAuth = document.getElementById('testi-author');
-const dots = document.querySelectorAll('.testi-dot');
-
-function showTestimonial(i) {
-  current = i;
-  tText.style.opacity = 0;
-  tAuth.style.opacity = 0;
-  setTimeout(() => {
-    tText.textContent = testimonials[i].text;
-    tAuth.textContent = testimonials[i].author;
-    tText.style.opacity = 1;
-    tAuth.style.opacity = 1;
-  }, 250);
-  dots.forEach((d,idx) => d.classList.toggle('active', idx === i));
+function showPage(page) {
+  document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo(0, 0);
 }
 
-dots.forEach(d => d.addEventListener('click', () => showTestimonial(+d.dataset.i)));
-tText.style.transition = 'opacity 0.25s';
-tAuth.style.transition = 'opacity 0.25s';
-
-// Auto-rotate every 5s
-setInterval(() => showTestimonial((current + 1) % testimonials.length), 5000);
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
 </script>
 </body>
 </html>
