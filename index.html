@@ -185,18 +185,6 @@
   .reviews-link { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border:2px solid var(--border); border-radius:12px; font-weight:700; font-size:0.95rem; color:var(--green); transition:all 0.3s; margin-top:32px; }
   .reviews-link:hover { border-color:var(--green); background:rgba(45,90,27,0.04); }
 
-  /* PRICING */
-  .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .pricing-card { background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:36px 28px; text-align:center; }
-  .pricing-card--featured { background:var(--green); border-color:var(--green); color:#fff; }
-  .pricing-name { font-size:1.1rem; font-weight:700; margin-bottom:12px; }
-  .pricing-card--featured .pricing-name { color:#fff; }
-  .pricing-price { font-family:var(--font-display); font-size:2rem; font-weight:800; color:var(--green); margin-bottom:12px; }
-  .pricing-card--featured .pricing-price { color:var(--accent); }
-  .pricing-desc { color:var(--text-muted); font-size:0.9rem; line-height:1.5; }
-  .pricing-card--featured .pricing-desc { color:rgba(240,244,232,0.8); }
-  @media (max-width:768px) { .pricing-grid { grid-template-columns:1fr; } }
-
   /* ADDRESSFINDER OVERRIDE */
   .af_list { border-radius:12px !important; border:2px solid var(--border) !important; font-family:var(--font-sans) !important; box-shadow:0 8px 24px rgba(0,0,0,0.1) !important; margin-top:4px !important; }
   .af_list .af_highlight { background:var(--surface) !important; color:var(--green) !important; }
@@ -337,35 +325,6 @@
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section style="padding:80px 32px; background:var(--surface);">
-    <div class="container">
-      <div class="section-label">Pricing</div>
-      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); text-align:center; margin-bottom:12px;">Fair prices, no surprises</h2>
-      <p style="text-align:center; color:var(--text-muted); font-size:1.05rem; margin-bottom:40px;">Every job is quoted upfront. No hidden extras, no lock-in contracts.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3 class="pricing-name">One-Off Visit</h3>
-          <div class="pricing-price">From $60</div>
-          <p class="pricing-desc">Lawn mowing, hedge trim, or garden tidy. No commitment required.</p>
-        </div>
-        <div class="pricing-card pricing-card--featured">
-          <h3 class="pricing-name">Regular Contract</h3>
-          <div class="pricing-price">From $50<span style="font-size:1rem; font-weight:500;">/visit</span></div>
-          <p class="pricing-desc">Weekly or fortnightly with priority scheduling and better rates.</p>
-        </div>
-        <div class="pricing-card">
-          <h3 class="pricing-name">Full Property Care</h3>
-          <div class="pricing-price">Get a quote</div>
-          <p class="pricing-desc">Mowing, hedges, weeding, and garden maintenance bundled.</p>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top:36px;">
-        <a href="#" class="btn btn-primary" onclick="showPage('quote')">Get Your Free Quote</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Testimonials -->
   <section style="padding:80px 32px; background:var(--bg);">
     <div class="container">
@@ -500,7 +459,7 @@
 
   <section style="padding:48px 32px 64px;">
     <div class="container" style="max-width:750px;">
-      <img src="team-placeholder.jpg" alt="Jasper and Luke — NZ Mow Bros" class="team-photo" id="teamPhotoSlot">
+      <img src="team-photo.jpg" alt="Jasper and Luke — NZ Mow Bros" class="team-photo" id="teamPhotoSlot">
       <div style="text-align:center;">
         <h2 style="font-family:var(--font-display); margin-bottom:16px;">Our Story</h2>
         <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7; margin-bottom:16px;">We're Jasper and Luke — two mates who started mowing lawns on Waiheke Island and quickly built a reputation for reliable, quality work. After growing our client base through word of mouth alone, we've expanded to Auckland's North Shore.</p>
