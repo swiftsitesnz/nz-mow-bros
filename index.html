@@ -549,8 +549,7 @@
 
   <section style="padding:48px 32px 80px;">
     <div class="container" style="max-width:600px;">
-      <form id="quoteForm" action="https://formspree.io/f/xbdzvdlv" method="POST">
-        <input type="hidden" name="_subject" value="New Quote Request — NZ Mow Bros Website">
+      <form id="quoteForm" method="POST">
 
         <div class="form-row">
           <div class="form-group"><label>Your Name</label><input type="text" name="Name" placeholder="Full name" required></div>
@@ -662,16 +661,17 @@ function toggleMenu() {
   document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
 
-// Formspree AJAX submission
+// Form submission
 document.getElementById('quoteForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
+  const body = Object.fromEntries(data.entries());
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch('/api/contact', {
       method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
     });
     if (response.ok) {
       form.style.display = 'none';
