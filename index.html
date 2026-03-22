@@ -85,7 +85,7 @@
   .hero h1 { font-family:var(--font-display); font-size:clamp(2.8rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:12px; color:#fff; }
   .hero h1 em { font-style:normal; color:var(--accent); }
   .hero .hero-sub { font-size:clamp(1.1rem,2.5vw,1.35rem); color:rgba(240,244,232,0.75); max-width:600px; margin:0 auto 32px; line-height:1.6; font-weight:400; }
-  .hero-actions { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+  .hero-actions { display:flex; gap:32px; justify-content:center; flex-wrap:wrap; }
   .hero .btn-primary { background:var(--accent); color:var(--dark); font-weight:800; }
   .hero .btn-primary:hover { background:#d4e83a; }
   .hero .btn-secondary { color:#fff; border-color:rgba(255,255,255,0.3); }
@@ -102,7 +102,8 @@
 
   /* VALUES */
   .values-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .value-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
+  .value-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; transition:all 0.3s; }
+  .value-card:hover { border-color:var(--green); box-shadow:0 4px 20px rgba(45,90,27,0.08); transform:translateY(-2px); }
   .value-icon { width:48px; height:48px; border-radius:14px; background:rgba(45,90,27,0.08); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
   .value-icon svg { width:24px; height:24px; fill:none; stroke:var(--green); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
   .value-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:6px; }
@@ -115,7 +116,8 @@
 
   /* TESTIMONIALS */
   .testimonials-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .testimonial-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:28px; }
+  .testimonial-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:28px; transition:all 0.3s; }
+  .testimonial-card:hover { border-color:var(--green); box-shadow:0 4px 20px rgba(45,90,27,0.08); transform:translateY(-2px); }
   .testimonial-card .stars { color:var(--accent-dark); font-size:1.1rem; margin-bottom:10px; }
   .testimonial-card blockquote { font-size:0.95rem; color:var(--text); line-height:1.6; font-style:italic; margin-bottom:12px; }
   .testimonial-card .author { font-size:0.8rem; color:var(--text-muted); font-weight:600; }
@@ -152,7 +154,8 @@
   .page-hero-img .section-label { color:var(--accent); }
 
   /* NOTICE */
-  .notice-bar { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:16px 24px; font-size:0.9rem; color:var(--text-muted); text-align:center; }
+  .notice-bar { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:16px 24px; font-size:0.9rem; color:var(--text-muted); text-align:center; transition:all 0.3s; }
+  .notice-bar:hover { border-color:var(--green); box-shadow:0 4px 20px rgba(45,90,27,0.08); transform:translateY(-2px); }
 
   /* CTA SECTION */
   .cta-section { background:var(--green-dark); padding:80px 32px; text-align:center; }
@@ -365,7 +368,7 @@
   <section class="cta-section">
     <h2>Let's get your property looking its best</h2>
     <p>Get a free, no-obligation quote in minutes. We'll come check out your property and give you an honest price.</p>
-    <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+    <div style="display:flex; gap:32px; justify-content:center; flex-wrap:wrap;">
       <a href="#" class="btn btn-primary" onclick="showPage('quote')">Get a Free Quote</a>
       <a href="tel:0224595225" class="btn btn-secondary" style="color:#fff; border-color:rgba(255,255,255,0.3);">Call Now</a>
     </div>
