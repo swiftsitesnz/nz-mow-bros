@@ -46,7 +46,8 @@
   .nav-logo-text { font-family:var(--font-display); font-size:1.3rem; color:var(--green-dark); font-weight:800; }
   .nav-links { list-style:none; display:flex; gap:32px; align-items:center; }
   .nav-links a { color:var(--text-muted); font-size:0.95rem; font-weight:600; transition:color 0.2s; }
-  .nav-links a:hover { color:var(--green); }
+  .nav-links a:hover, .nav-links a.active { color:var(--green); }
+  .mobile-menu a.active { background:var(--surface); color:var(--green); }
   .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; border-radius:12px; font-weight:700; font-size:1rem; font-family:var(--font-sans); cursor:pointer; transition:all 0.3s; border:none; text-decoration:none; }
   .btn-primary { background:var(--green); color:#fff; }
   .btn-primary:hover { background:var(--green-dark); transform:translateY(-1px); box-shadow:0 4px 16px rgba(45,90,27,0.3); }
@@ -62,7 +63,7 @@
   .section-label { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--green); font-weight:700; margin-bottom:8px; text-align:center; }
 
   /* HAMBURGER */
-  .hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; z-index:60; }
+  .hamburger { display:none; background:none; border:none; cursor:pointer; padding:12px; z-index:60; min-width:48px; min-height:48px; }
   .hamburger span { display:block; width:24px; height:2.5px; background:var(--text); margin:5px 0; border-radius:2px; transition:all 0.3s; }
   .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
   .hamburger.active span:nth-child(2) { opacity:0; }
@@ -166,7 +167,6 @@
 
   /* ABOUT TEAM PHOTO */
   .team-photo { width:100%; max-width:600px; height:360px; object-fit:cover; object-position:center 20%; border-radius:20px; margin:0 auto 32px; display:block; }
-  .team-photo-placeholder { width:100%; max-width:600px; height:360px; border-radius:20px; margin:0 auto 32px; display:flex; align-items:center; justify-content:center; background:var(--surface); border:2px dashed var(--border); color:var(--text-muted); font-size:0.95rem; font-weight:600; }
 
   /* FOOTER */
   footer { background:var(--dark); color:var(--dark-text); padding:64px 32px 32px; text-align:center; }
@@ -622,7 +622,7 @@
   </div>
   <div class="footer-bottom">
     &copy; 2026 NZ Mow Bros Limited. All rights reserved.<br>
-    <span style="opacity:0.5;">Jasper: 022 459 5225 &nbsp;&middot;&nbsp; Luke: 021 087 83970 &nbsp;&middot;&nbsp; nzmowbros@gmail.com</span>
+    <span style="opacity:0.5;">Jasper: <a href="tel:0224595225" style="color:inherit;">022 459 5225</a> &nbsp;&middot;&nbsp; Luke: <a href="tel:02108783970" style="color:inherit;">021 087 83970</a> &nbsp;&middot;&nbsp; <a href="mailto:nzmowbros@gmail.com" style="color:inherit;">nzmowbros@gmail.com</a></span>
   </div>
 </footer>
 
@@ -656,6 +656,11 @@ function showPage(page) {
   document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   window.scrollTo(0, 0);
+  // Highlight active nav link
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + page + "'")) a.classList.add('active');
+  });
   // Close mobile menu if open
   var menu = document.getElementById('mobileMenu');
   var burger = document.querySelector('.hamburger');
