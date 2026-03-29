@@ -2,8 +2,8 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const EMAIL_FROM = process.env.EMAIL_FROM || 'hello@swiftsites.nz';
-const EMAIL_TO = process.env.EMAIL_TO || 'hello@swiftsites.nz';
+const EMAIL_FROM = process.env.EMAIL_FROM || 'hello@nzmowbros.co.nz';
+const EMAIL_TO = process.env.EMAIL_TO || 'nzmowbros@gmail.com';
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
